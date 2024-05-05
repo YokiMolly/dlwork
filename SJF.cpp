@@ -5,47 +5,47 @@
 
 using namespace std;
 
-class Process
+class Process//è¿›ç¨‹ç±»
 {
 public:
-	string m_ProcessID;//½ø³ÌºÅ
-	double m_CreationTime;//´´½¨Ê±¼ä
-	double m_ExecutionTime;//Ö´ĞĞÊ±¼ä
-	double m_StartTime;//¿ªÊ¼Ê±¼ä
-	double m_CompletionTime();//Íê³ÉÊ±¼ä
-	double m_TurnaroundTime();//ÖÜ×ªÊ±¼ä
-	double m_CarryingTurnaroundTime();//´øÈ¨ÖÜ×ªÊ±¼ä
+	string m_ProcessID;//è¿›ç¨‹å·
+	double m_CreationTime;//åˆ›å»ºæ—¶é—´
+	double m_ExecutionTime;//æ‰§è¡Œæ—¶é—´
+	double m_StartTime;//å¼€å§‹æ—¶é—´
+	double m_CompletionTime();//å®Œæˆæ—¶é—´
+	double m_TurnaroundTime();//å‘¨è½¬æ—¶é—´
+	double m_CarryingTurnaroundTime();//å¸¦æƒå‘¨è½¬æ—¶é—´
 };
-double Process::m_CompletionTime()//Í¨¹ı³ÉÔ±º¯Êı ÔÚ´´½¨Ê±µÃµ½ Íê³ÉÊ±¼ä = ¿ªÊ¼Ê±¼ä + Ö´ĞĞÊ±¼ä
+double Process::m_CompletionTime()//é€šè¿‡æˆå‘˜å‡½æ•° åœ¨åˆ›å»ºæ—¶å¾—åˆ° å®Œæˆæ—¶é—´ = å¼€å§‹æ—¶é—´ + æ‰§è¡Œæ—¶é—´
 {
 	return this->m_StartTime + this->m_ExecutionTime;
 }
 
-double Process::m_TurnaroundTime()//³ÉÔ±º¯Êı ÖÜ×ªÊ±¼ä = Íê³ÉÊ±¼ä - ´´½¨Ê±¼ä
+double Process::m_TurnaroundTime()//æˆå‘˜å‡½æ•° å‘¨è½¬æ—¶é—´ = å®Œæˆæ—¶é—´ - åˆ›å»ºæ—¶é—´
 {
 	return this->m_CompletionTime() - this->m_CreationTime;
 }
 
-double Process::m_CarryingTurnaroundTime()//³ÉÔ±º¯Êı ´øÈ¨ÖÜ×ªÊ±¼ä = ÖÜ×ªÊ±¼ä / Ö´ĞĞÊ±¼ä
+double Process::m_CarryingTurnaroundTime()//æˆå‘˜å‡½æ•° å¸¦æƒå‘¨è½¬æ—¶é—´ = å‘¨è½¬æ—¶é—´ / æ‰§è¡Œæ—¶é—´
 {
 	return this->m_TurnaroundTime() / this->m_ExecutionTime;
 }
 
 
-class ProcessBook//½ø³Ì¼¯
+class ProcessBook//è¿›ç¨‹é›†ç±»
 {
 public:
-	Process m_ProcessArray[MAX];//ÈİÄÉ100¸ö½ø³ÌµÄÊı×é
-	int m_ProcessCount;//½ø³ÌÊıÁ¿
+	Process m_ProcessArray[MAX];//å®¹çº³100ä¸ªè¿›ç¨‹çš„æ•°ç»„
+	int m_ProcessCount;//è¿›ç¨‹æ•°é‡
 };
 
-void showMenu();//ÏÔÊ¾²Ëµ¥
-void initProcessBook(ProcessBook* pb);//³õÊ¼»¯½ø³Ì¼¯
-void addProcess(ProcessBook* pb);//Ìí¼Ó½ø³Ì
-void showProcess(ProcessBook* pb);//ÏÔÊ¾½ø³Ì
-void SJFSort(ProcessBook* pb);//¶Ì×÷ÒµÓÅÏÈÅÅĞò
-void SJF(ProcessBook* pb);//¶Ì×÷ÒµÓÅÏÈµ÷¶È
-void showResult(ProcessBook *pb);//Êä³ö½á¹û
+void showMenu();//æ˜¾ç¤ºèœå•
+void initProcessBook(ProcessBook* pb);//åˆå§‹åŒ–è¿›ç¨‹é›†
+void addProcess(ProcessBook* pb);//æ·»åŠ è¿›ç¨‹
+void showProcess(ProcessBook* pb);//æ˜¾ç¤ºè¿›ç¨‹
+void SJFSort(ProcessBook* pb);//çŸ­ä½œä¸šä¼˜å…ˆæ’åº
+void SJF(ProcessBook* pb);//çŸ­ä½œä¸šä¼˜å…ˆè°ƒåº¦
+void showResult(ProcessBook *pb);//è¾“å‡ºç»“æœ
 
 int main(void)
 {
@@ -57,12 +57,12 @@ int main(void)
 		showMenu();
 
 		int select = 0;
-		cout << endl << "ÇëÊäÈë²Ù×÷£º";
+		cout << endl << "è¯·è¾“å…¥æ“ä½œï¼š";
 		cin >> select;
 		switch (select)
 		{
 		case 0:
-			cout << "ÒÑ³É¹¦ÍË³ö";
+			cout << "å·²æˆåŠŸé€€å‡º";
 			return 0;
 			break;
 		case 1:
@@ -75,7 +75,7 @@ int main(void)
 			SJF(&pb);
 			break;
 		default:
-			cout << "ÇëÊäÈëÕıÈ·Ö¸Áî";
+			cout << "è¯·è¾“å…¥æ­£ç¡®æŒ‡ä»¤";
 			system("pause");
 			system("cls");
 			break;
@@ -85,48 +85,48 @@ int main(void)
 	return 0;
 }
 
-void showMenu()
+void showMenu()//ä¸»èœå•
 {
 	cout << "\t***************************************\t" << endl;
-	cout << "\t**************½ø³Ìµ÷¶È³ÌĞò*************\t" << endl;
-	cout << "\t**************0¡¢ÍË³ö³ÌĞò**************\t" << endl;
-	cout << "\t**************1¡¢Ìí¼Ó½ø³Ì**************\t" << endl;
-	cout << "\t**************2¡¢ÏÔÊ¾½ø³Ì**************\t" << endl;
-	cout << "\t*************3¡¢¶Ì×÷ÒµÓÅÏÈ*************\t" << endl;
+	cout << "\t**************è¿›ç¨‹è°ƒåº¦ç¨‹åº*************\t" << endl;
+	cout << "\t**************0ã€é€€å‡ºç¨‹åº**************\t" << endl;
+	cout << "\t**************1ã€æ·»åŠ è¿›ç¨‹**************\t" << endl;
+	cout << "\t**************2ã€æ˜¾ç¤ºè¿›ç¨‹**************\t" << endl;
+	cout << "\t*************3ã€çŸ­ä½œä¸šä¼˜å…ˆ*************\t" << endl;
 	cout << "\t***************************************\t" << endl;
 }
 
-void initProcessBook(ProcessBook* pb)
+void initProcessBook(ProcessBook* pb)//åˆå§‹åŒ–è¿›ç¨‹é›†ç±»
 {
 	pb->m_ProcessCount = 0;
 }
 
-void addProcess(ProcessBook* pb)
+void addProcess(ProcessBook* pb)//æ·»åŠ è¿›ç¨‹
 {
-	cout << "Ìí¼Ó½ø³Ì" << endl;
-	cout << "ÇëÊäÈë½ø³ÌºÅ:";
+	cout << "æ·»åŠ è¿›ç¨‹" << endl;
+	cout << "è¯·è¾“å…¥è¿›ç¨‹å·:";
 	cin >> pb->m_ProcessArray[pb->m_ProcessCount].m_ProcessID;//
-	cout << "ÇëÊäÈë½ø³Ì´´½¨Ê±¼ä£º";
+	cout << "è¯·è¾“å…¥è¿›ç¨‹åˆ›å»ºæ—¶é—´ï¼š";
 	cin >> pb->m_ProcessArray[pb->m_ProcessCount].m_CreationTime;//
-	cout << "ÇëÊäÈë½ø³ÌÖ´ĞĞÊ±¼ä£º";
+	cout << "è¯·è¾“å…¥è¿›ç¨‹æ‰§è¡Œæ—¶é—´ï¼š";
 	cin >> pb->m_ProcessArray[pb->m_ProcessCount].m_ExecutionTime;//
 	pb->m_ProcessCount++;
-	cout << "µÚ" << pb->m_ProcessCount << "¸ö½ø³ÌÌí¼Ó³É¹¦" << endl;
+	cout << "ç¬¬" << pb->m_ProcessCount << "ä¸ªè¿›ç¨‹æ·»åŠ æˆåŠŸ" << endl;
 	system("pause");
 	system("cls");
 }
 
-void showProcess(ProcessBook* pb)
+void showProcess(ProcessBook* pb)//å±•ç¤ºå·²ç»è¾“å…¥çš„è¿›ç¨‹
 {
 	if (pb->m_ProcessCount == 0)
 	{
-		cout << "ÔİÎŞ½ø³Ì" << endl;
+		cout << "æš‚æ— è¿›ç¨‹" << endl;
 	}
 	else
 	{
-		cout << "ËùÓĞ½ø³ÌÈçÏÂ" << endl;
-		cout << "½ø³ÌºÅ\t´´½¨Ê±¼ä\tÔËĞĞÊ±¼ä" << endl;
-		for (int i = 0; i < pb->m_ProcessCount; i++)//±éÀúÕû¸ö½ø³Ì¼¯ Êä³ö½ø³Ì
+		cout << "æ‰€æœ‰è¿›ç¨‹å¦‚ä¸‹" << endl;
+		cout << "è¿›ç¨‹å·\tåˆ›å»ºæ—¶é—´\tè¿è¡Œæ—¶é—´" << endl;
+		for (int i = 0; i < pb->m_ProcessCount; i++)//éå†æ•´ä¸ªè¿›ç¨‹é›† è¾“å‡ºè¿›ç¨‹
 		{
 			cout << pb->m_ProcessArray[i].m_ProcessID << "\t" << pb->m_ProcessArray[i].m_CreationTime << "\t\t"
 				<< pb->m_ProcessArray[i].m_ExecutionTime << endl;
@@ -138,79 +138,97 @@ void showProcess(ProcessBook* pb)
 }
 
 
-
-void executionTimeSort(ProcessBook* pb) { // °´½ø³ÌÖ´ĞĞÊ±¼äÉıĞòÅÅĞò
-	// Ã°ÅİÅÅĞò: Ã¿´ÎÕÒµ½´Óiµ½pb->m_ProcessArray[i].m_ProcessCount - 1ÖĞÓÅÏÈ¼¶×î¸ßµÄ½ø³Ì£¬·Åµ½pb->m_ProcessArray[i]
-	for (int i = 0; i < pb->m_ProcessCount - 1; i++) { // °´½ø³Ì´´½¨¡¢Ö´ĞĞÊ±¼ä½øĞĞÉıĞòÅÅĞò 
-		for (int j = i + 1; j < pb->m_ProcessCount; j++) {
+//è¿™ä¸ªæ’åºå…¶å®æ˜¯å·çš„... ç®—æ³•æ„Ÿè§‰æœ‰ç‚¹çƒ§è„‘å°±ç›´æ¥ctrl cväº†... èƒ½çœ‹å¾—æ‡‚ ä½†è‡ªå·±æƒ³å¯èƒ½æƒ³ä¸å‡ºæ¥...
+void executionTimeSort(ProcessBook* pb)//æ’åºç®—æ³•
+{ 
+	// å†’æ³¡æ’åº
+	for (int i = 0; i < pb->m_ProcessCount - 1; i++) 
+	{ // æŒ‰è¿›ç¨‹åˆ›å»ºã€æ‰§è¡Œæ—¶é—´è¿›è¡Œå‡åºæ’åº 
+		//1.è¿™æ®µæ˜¯å…ˆæ’åºå‡ºåˆ›å»ºç¬¬ä¸€ä¸ªæ’åºé˜Ÿåˆ—ï¼šåˆ›å»ºæ—¶é—´ä»å°åˆ°å¤§çš„é˜Ÿåˆ—
+		for (int j = i + 1; j < pb->m_ProcessCount; j++) 	// ä¾æ¬¡æ£€æµ‹ç¬¬iè¿›ç¨‹ä¸åé¢æ‰€æœ‰è¿›ç¨‹ å¦‚æœiè¿›ç¨‹åœ°åˆ›å»ºæ—¶é—´å¤§äºåé¢jè¿›ç¨‹åœ°åˆ›å»ºæ—¶é—´ 
+									//æˆ–è€…è¿›ç¨‹iè¿›ç¨‹çš„çš„åˆ›å»ºæ—¶é—´ç­‰äºjè¿›ç¨‹åˆ›å»ºæ—¶é—´ å¹¶ä¸”iè¿›ç¨‹çš„æ‰§è¡Œæ—¶é—´å¤§äºjè¿›ç¨‹çš„æ‰§è¡Œæ—¶é—´ é‚£ä¹ˆå°†iè¿›ç¨‹ä¸jè¿›ç¨‹äº¤æ¢æ’åºä½ç½® 
+									//å¦‚æ­¤æ£€æµ‹å®Œä¸€è½®å i++ è¿›è¡Œåç»­çš„æ’åºç›´åˆ°iéå†å®Œæœ€åçš„è¿›ç¨‹
+		{
 			if (pb->m_ProcessArray[i].m_CreationTime > pb->m_ProcessArray[j].m_CreationTime
 				|| (pb->m_ProcessArray[i].m_CreationTime == pb->m_ProcessArray[j].m_CreationTime
-					&& pb->m_ProcessArray[i].m_ExecutionTime > pb->m_ProcessArray[j].m_ExecutionTime)) {
-				Process temp = pb->m_ProcessArray[i]; // ½»»»i£¬j¶ÔÓ¦ÔªËØµÄË³Ğò 
+					&& pb->m_ProcessArray[i].m_ExecutionTime > pb->m_ProcessArray[j].m_ExecutionTime)) 
+			{
+				Process temp = pb->m_ProcessArray[i]; // äº¤æ¢iï¼Œjå¯¹åº”å…ƒç´ çš„é¡ºåº 
 				pb->m_ProcessArray[i] = pb->m_ProcessArray[j];
 				pb->m_ProcessArray[j] = temp;
 			}
 		}
 	}
 
-	for (int i = 0; i < pb->m_ProcessCount - 1; i++) {
-		if (i == 0) { // ÓÉÓÚÅÅĞòºóµÚÒ»¸ö½ø³ÌµÄ´´½¨Ê±¼ä×î¶Ì£¬ËùÒÔ´´½¨Ê±¼ä¾ÍÊÇ¿ªÊ¼Ê±¼ä 
+	for (int i = 0; i < pb->m_ProcessCount - 1; i++) //2.è¿™æ®µå…¶å®å’Œæœ€ä¸‹é¢é‚£ä¸ªSJFï¼ˆï¼‰æ˜¯ä¸€æ ·çš„ä½œç”¨ åˆ†æƒ…å†µè®¨è®ºç¬¬ä¸€æ¬¡æ’åºå®Œåçš„å„è¿›ç¨‹å¼€å§‹æ—¶é—´
+	{
+		if (i == 0) 
+		{ // ç”±äºæ’åºåç¬¬ä¸€ä¸ªè¿›ç¨‹çš„åˆ›å»ºæ—¶é—´æœ€çŸ­ æ‰€ä»¥åˆ›å»ºæ—¶é—´å°±æ˜¯å¼€å§‹æ—¶é—´ 
 			pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;
 		}
-		else { // ³ıµÚÒ»¸ö½ø³Ì£¬ÆäÓà½ø³ÌµÄ¿ªÊ¼Ê±¼äÓÉÉÏÒ»¸ö½ø³ÌµÄÍê³ÉÊ±¼ä»òÊÇ´Ë½ø³ÌµÄ´´½¨Ê±¼ä¾ö¶¨µÄ
-			// Èç¹ûÉÏÒ»¸ö½ø³ÌµÄÍê³ÉÊ±¼ä´óÓÚ/µÈÓÚ´Ë½ø³ÌµÄ´´½¨Ê±¼ä£¬ÄÇÃ´ÉÏÒ»¸ö½ø³ÌµÄÍê³ÉÊ±¼ä¾ÍÊÇ´Ë½ø³ÌµÄ¿ªÊ¼Ê±¼ä
-			// ·´Ö®£¬ ÉÏÒ»¸ö½ø³ÌµÄÍê³ÉÊ±¼äĞ¡ÓÚ´Ë½ø³ÌµÄ´´½¨Ê±¼ä£¬ÄÇÃ´´Ë½ø³ÌµÄ´´½¨Ê±¼ä¾ÍÊÇ¿ªÊ¼Ê±¼ä
-			if (pb->m_ProcessArray[i - 1].m_CompletionTime() >= pb->m_ProcessArray[i].m_CreationTime) {
+		else
+		{ // é™¤ç¬¬ä¸€ä¸ªè¿›ç¨‹ï¼Œå…¶ä½™è¿›ç¨‹çš„å¼€å§‹æ—¶é—´ç”±ä¸Šä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´æˆ–æ˜¯æ­¤è¿›ç¨‹çš„åˆ›å»ºæ—¶é—´å†³å®šçš„
+			// å¦‚æœä¸Šä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´å¤§äº/ç­‰äºæ­¤è¿›ç¨‹çš„åˆ›å»ºæ—¶é—´ï¼Œé‚£ä¹ˆä¸Šä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´å°±æ˜¯æ­¤è¿›ç¨‹çš„å¼€å§‹æ—¶é—´
+			// åä¹‹ï¼Œ ä¸Šä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´å°äºæ­¤è¿›ç¨‹çš„åˆ›å»ºæ—¶é—´ï¼Œé‚£ä¹ˆæ­¤è¿›ç¨‹çš„åˆ›å»ºæ—¶é—´å°±æ˜¯å¼€å§‹æ—¶é—´
+			if (pb->m_ProcessArray[i - 1].m_CompletionTime() >= pb->m_ProcessArray[i].m_CreationTime)
+			{
 				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i - 1].m_CompletionTime();
 			}
-			else {
+			else
+			{
 				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;
 			}
 		}
 
-		// µÚÒ»²½£ºÕÒµ½½ø³Ìpb->m_ProcessCount[i]Íê³ÉÊ±ÓĞÄÄĞ©½ø³ÌÒÑ´´½¨ 
-		int count = 0; // Í³¼Æpb->m_ProcessCount[i]½ø³ÌÍê³ÉÊ±ÓĞ¼¸¸ö½ø³Ì´´½¨
+		// ç¬¬ä¸€æ­¥ï¼šæ‰¾åˆ°è¿›ç¨‹pb->m_ProcessCount[i]å®Œæˆæ—¶æœ‰å“ªäº›è¿›ç¨‹å·²åˆ›å»º 
+		int count = 0; // ç»Ÿè®¡pb->m_ProcessCount[i]è¿›ç¨‹å®Œæˆæ—¶æœ‰å‡ ä¸ªè¿›ç¨‹åˆ›å»º
 
-		// ´Ó½ø³Ìpb->m_ProcessCount[i+1]¿ªÊ¼Ñ°ÕÒ 
-		for (int j = i + 1; j < pb->m_ProcessCount; j++) { // µ±½ø³Ì[j]´´½¨Ê±¼äĞ¡ÓÚ½ø³Ì[i]Íê³ÉÊ±¼äÊ±½øĞĞ¼ÇÂ¼ 
-			if (pb->m_ProcessArray[j].m_CreationTime <= pb->m_ProcessArray[i].m_CompletionTime()) {
+		// ä»è¿›ç¨‹pb->m_ProcessCount[i+1]å¼€å§‹å¯»æ‰¾ 
+		//3.å°†ç¬¬ä¸€æ¬¡æ’åºå é˜Ÿåˆ—ä¸­æ¯åä¸€ä¸ªè¿›ç¨‹jçš„åˆ›å»ºæ—¶é—´ä¸å‰ä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´iæ¯”è¾ƒ å¦‚æœåè¿›ç¨‹jåˆ›å»ºæ—¶é—´å°äºç­‰äºå‰è¿›ç¨‹içš„å®Œæˆæ—¶é—´ 
+		//åˆ™åœ¨count++ ä»£è¡¨åè¿›ç¨‹jå·²ç»è¢«åˆ›å»ºäº† å¹¶ç”¨countè®°å½•ä»¥åŠè¢«åˆ›å»ºçš„è¿›ç¨‹æ•°
+		for (int j = i + 1; j < pb->m_ProcessCount; j++) { // å½“è¿›ç¨‹[j]åˆ›å»ºæ—¶é—´å°äºè¿›ç¨‹[i]å®Œæˆæ—¶é—´æ—¶è¿›è¡Œè®°å½• 
+			if (pb->m_ProcessArray[j].m_CreationTime <= pb->m_ProcessArray[i].m_CompletionTime())
+			{
 				count++;
 			}
-			else { // µ±½ø³Ì[j]´´½¨Ê±¼äĞ¡ÓÚ½ø³Ì[i]Íê³ÉÊ±¼äÔòÌø³öÑ­»· 
+			else { // å½“è¿›ç¨‹[j]åˆ›å»ºæ—¶é—´å°äºè¿›ç¨‹[i]å®Œæˆæ—¶é—´åˆ™è·³å‡ºå¾ªç¯ 
 				break;
 			}
 		}
 
-		// µÚ¶ş²½£ºÔÚÒÑ´´½¨µÄ½ø³ÌÖĞÕÒµ½Ö´ĞĞÊ±¼ä×î¶ÌµÄ½ø³Ì 
-		double min = pb->m_ProcessArray[i + 1].m_ExecutionTime;	// ¼ÙÉè½ø³Ì[i+1]µÄÖ´ĞĞÊ±¼ä×î¶Ì 
-		int next = i + 1; // ¼ÇÂ¼×î¶Ì½ø³ÌµÄÏÂ±ê£¬³õÖµÎªi+1 
+		// ç¬¬äºŒæ­¥ï¼šåœ¨å·²åˆ›å»ºçš„è¿›ç¨‹ä¸­æ‰¾åˆ°æ‰§è¡Œæ—¶é—´æœ€çŸ­çš„è¿›ç¨‹ 
+		double min = pb->m_ProcessArray[i + 1].m_ExecutionTime;	// å‡è®¾è¿›ç¨‹[i+1]çš„æ‰§è¡Œæ—¶é—´æœ€çŸ­ 
+		int next = i + 1; // è®°å½•æœ€çŸ­è¿›ç¨‹çš„ä¸‹æ ‡ï¼Œåˆå€¼ä¸ºi+1 
 
-		for (int k = i + 1; k < i + count; k++) { // kµÄÈ¡Öµ´Ói+1µ½i+count¼´ËùÓĞÍê³ÉÊ±¼äÄÚÒÑ´´½¨µÄ½ø³Ì 
-			if (pb->m_ProcessArray[k + 1].m_ExecutionTime < min) { // ±éÀúÕâĞ©½ø³ÌÕÒµ½×î¶Ì½ø³ÌµÄÏÂ±ênext 
+		//4.éå†å·²åˆ›å»ºè¿›ç¨‹ä¸­çš„è¿›ç¨‹
+		for (int k = i + 1; k < i + count; k++) 
+		{ // kçš„å–å€¼ä»i+1åˆ°i+countå³æ‰€æœ‰å®Œæˆæ—¶é—´å†…å·²åˆ›å»ºçš„è¿›ç¨‹ 
+			if (pb->m_ProcessArray[k + 1].m_ExecutionTime < min) 
+			{ // éå†è¿™äº›è¿›ç¨‹æ‰¾åˆ°æœ€çŸ­è¿›ç¨‹çš„ä¸‹æ ‡next 
 				min = pb->m_ProcessArray[k + 1].m_ExecutionTime;
 				next = k + 1;
 			}
 		}
-
-		// ½«×î¶Ì½ø³Ì½»»»ÖÁÍê³ÉÊ±¼äÄÚµÄÏÂÒ»¸ö½ø³Ì 
+		//5.å°†å·²åˆ›å»ºè¿›ç¨‹ä¸­æœ€çŸ­æ‰§è¡Œæ—¶é—´çš„è¿›ç¨‹æ’åºè‡³å‰ä¸€ä½
+		// å°†æœ€çŸ­è¿›ç¨‹äº¤æ¢è‡³å®Œæˆæ—¶é—´å†…çš„ä¸‹ä¸€ä¸ªè¿›ç¨‹ 
 		Process temp = pb->m_ProcessArray[i + 1];
 		pb->m_ProcessArray[i + 1] = pb->m_ProcessArray[next];
 		pb->m_ProcessArray[next] = temp;
 	}
 }
 
-void showResult(ProcessBook* pb)
+void showResult(ProcessBook* pb)//ç»“æœå±•ç¤º
 {
 	cout << endl << endl;
-	cout << "½ø³Ìµ÷¶ÈË³ĞòÈçÏÂ£º" << pb->m_ProcessArray[0].m_ProcessID;
+	cout << "è¿›ç¨‹è°ƒåº¦é¡ºåºå¦‚ä¸‹ï¼š" << pb->m_ProcessArray[0].m_ProcessID;
 	for (int i = 1; i < pb->m_ProcessCount; i++)
 	{
 		cout << "->";
 		cout << pb->m_ProcessArray[i].m_ProcessID;
 	}
 
-	cout << endl << endl << "½ø³Ìµ÷¶ÈËã·¨ºóµÄ½á¹û£º" << endl;
-	cout << "½ø³ÌºÅ\t´´½¨Ê±¼ä\tÔËĞĞÊ±¼ä\t¿ªÊ¼Ê±¼ä\tÍê³ÉÊ±¼ä\tÖÜ×ªÊ±¼ä\t´øÈ¨ÖÜ×ªÊ±¼ä" << endl;
+	cout << endl << endl << "è¿›ç¨‹è°ƒåº¦ç®—æ³•åçš„ç»“æœï¼š" << endl;
+	cout << "è¿›ç¨‹å·\tåˆ›å»ºæ—¶é—´\tè¿è¡Œæ—¶é—´\tå¼€å§‹æ—¶é—´\tå®Œæˆæ—¶é—´\tå‘¨è½¬æ—¶é—´\tå¸¦æƒå‘¨è½¬æ—¶é—´" << endl;
 	for (int i = 0; i < pb->m_ProcessCount ;i++)
 	{
 		cout << pb->m_ProcessArray[i].m_ProcessID << "\t"
@@ -229,21 +247,21 @@ void showResult(ProcessBook* pb)
 		ave_TurnaroundTime += pb->m_ProcessArray[i].m_TurnaroundTime();
 		ave_CarryingTurnaroundTime += pb->m_ProcessArray[i].m_CarryingTurnaroundTime();
 	}
-	ave_TurnaroundTime /= pb->m_ProcessCount;//Í¨¹ı³ÉÔ±º¯ÊıºÍÉÏ×éÑ­»·ÒÑÖª×ÜµÄÖÜ×ªÊ±¼äºÍ´øÈ¨ÖÜ×ªÊ±¼ä 
-	ave_CarryingTurnaroundTime /= pb->m_ProcessCount;//Ö»Ğè³ıÒÔ×ÜµÄ½ø³ÌÊı¾Í¿ÉµÃ³öÆ½¾ùÖÜ×ªÊ±¼äºÍÆ½¾ù´øÈ¨ÖÜ×ªÊ±¼ä
+	ave_TurnaroundTime /= pb->m_ProcessCount;//é€šè¿‡æˆå‘˜å‡½æ•°å’Œä¸Šç»„å¾ªç¯å·²çŸ¥æ€»çš„å‘¨è½¬æ—¶é—´å’Œå¸¦æƒå‘¨è½¬æ—¶é—´ 
+	ave_CarryingTurnaroundTime /= pb->m_ProcessCount;//åªéœ€é™¤ä»¥æ€»çš„è¿›ç¨‹æ•°å°±å¯å¾—å‡ºå¹³å‡å‘¨è½¬æ—¶é—´å’Œå¹³å‡å¸¦æƒå‘¨è½¬æ—¶é—´
 
-	cout << "Æ½¾ùÖÜ×ªÊ±¼ä£º" << ave_TurnaroundTime << endl;
-	cout << "Æ½¾ù´øÈ¨ÖÜ×ªÊ±¼ä£º" << ave_CarryingTurnaroundTime << endl;
+	cout << "å¹³å‡å‘¨è½¬æ—¶é—´ï¼š" << ave_TurnaroundTime << endl;
+	cout << "å¹³å‡å¸¦æƒå‘¨è½¬æ—¶é—´ï¼š" << ave_CarryingTurnaroundTime << endl;
 	cout << "\t***************************************\t" << endl;
 
 }
-void SJF(ProcessBook* pb)
+void SJF(ProcessBook* pb)//çŸ­ä½œä¸šä¼˜å…ˆè°ƒåº¦
 {
 	executionTimeSort(pb);
 	cout << endl;
-	cout << "½ø³ÌºÅ\t´´½¨Ê±¼ä\tÔËĞĞÊ±¼ä" << endl;
-	//²âÊÔÅÅĞò½á¹ûÊÇ·ñÓĞĞ§
-	//for (int i = 0; i < pb->m_PrpcessCount; i++)//±éÀúÕû¸ö½ø³Ì¼¯ Êä³ö½ø³Ì
+	cout << "è¿›ç¨‹å·\tåˆ›å»ºæ—¶é—´\tè¿è¡Œæ—¶é—´" << endl;
+	//æµ‹è¯•æ’åºç»“æœæ˜¯å¦æœ‰æ•ˆ
+	//for (int i = 0; i < pb->m_PrpcessCount; i++)//éå†æ•´ä¸ªè¿›ç¨‹é›† è¾“å‡ºè¿›ç¨‹
 	//{
 	//	cout << pb->m_ProcessArray[i].m_ProcessID << "\t" << pb->m_ProcessArray[i].m_CreationTime << "\t\t"
 	//		<< pb->m_ProcessArray[i].m_ExcutionTime << endl;
@@ -252,17 +270,17 @@ void SJF(ProcessBook* pb)
 	{
 		if (i == 0)
 		{
-			pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;//µÚÒ»¸ö½ø³Ì ¿ªÊ¼Ê±¼ä¸³ÖµÎª´´½¨Ê±¼ä
+			pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;//ç¬¬ä¸€ä¸ªè¿›ç¨‹ å¼€å§‹æ—¶é—´èµ‹å€¼ä¸ºåˆ›å»ºæ—¶é—´
 		}
 		else
 		{
-			if (pb->m_ProcessArray[i - 1].m_CompletionTime() >= pb->m_ProcessArray[i].m_CreationTime)//Èç¹ûÅÅĞòºóÇ°Ò»¸ö½ø³ÌÍê³ÉÊ±¼ä±ÈºóÒ»¸ö½ø³ÌµÄ´´½¨Ê±¼äºó
+			if (pb->m_ProcessArray[i - 1].m_CompletionTime() >= pb->m_ProcessArray[i].m_CreationTime)//å¦‚æœæ’åºåå‰ä¸€ä¸ªè¿›ç¨‹å®Œæˆæ—¶é—´æ¯”åä¸€ä¸ªè¿›ç¨‹çš„åˆ›å»ºæ—¶é—´å
 			{
-				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i - 1].m_CompletionTime();//½«ºóÒ»¸ö½ø³ÌµÄ¿ªÊ¼Ê±¼ä¸³ÖµÎªÇ°Ò»¸ö½ø³ÌµÄÍê³ÉÊ±¼ä
+				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i - 1].m_CompletionTime();//å°†åä¸€ä¸ªè¿›ç¨‹çš„å¼€å§‹æ—¶é—´èµ‹å€¼ä¸ºå‰ä¸€ä¸ªè¿›ç¨‹çš„å®Œæˆæ—¶é—´
 			}
 			else
 			{
-				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;//·ñÔò½«ºóÒ»¸ö½ø³ÌµÄ¿ªÊ¼Ê±¼ä¸³ÖµÎª´´½¨Ê±¼ä
+				pb->m_ProcessArray[i].m_StartTime = pb->m_ProcessArray[i].m_CreationTime;//å¦åˆ™å°†åä¸€ä¸ªè¿›ç¨‹çš„å¼€å§‹æ—¶é—´èµ‹å€¼ä¸ºåˆ›å»ºæ—¶é—´
 			}
 		}
 	}
